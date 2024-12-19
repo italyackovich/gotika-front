@@ -5,14 +5,22 @@ export default {
     colors: {
       black: '#272E36',
       white: '#F0E9E6',
-      gray: '#9095A1'
+      gray: '#9095A1',
+      lightGray: '#E2D8D2'
     },
     fontFamily: {
       inter: ['Inter', 'sans-serif'],
     },
     extend: {
+      boxShadow: {
+        'strong': '0 4px 15px rgba(0, 0, 0, 0.25)', // Сильная тень
+        'extra-strong': '0 8px 30px rgba(0, 0, 0, 0.35)', // Очень сильная тень
+        'subtle': '0 2px 10px rgba(0, 0, 0, 0.15)' // Легкая
+      },
       spacing: {
-        80: '80px',
+        150: '150px',
+        158: '158px',
+        159: '159px',
         90: '90px'
       },
       letterSpacing: {

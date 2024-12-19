@@ -4,5 +4,6 @@ import MyHeader from '@/core/component/MyHeader.vue'
 
 <template>
   <MyHeader/>
+  <RouterView/>
 </template>
 

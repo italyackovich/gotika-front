@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue'
 
-import '../styles/header.css'
-
 const searchText: Ref<string> = ref("")
 
 </script>
@@ -18,7 +16,7 @@ const searchText: Ref<string> = ref("")
       type="text"
       placeholder="Найти ресторан, блюдо..."
     />
-    <button class="text-sm tracking-widest px-4 text-black bg-white h-full">Найти</button>
+    <button class="text-sm font-bold tracking-widest px-4 text-black bg-white h-full">Найти</button>
   </div>
 </template>
 
