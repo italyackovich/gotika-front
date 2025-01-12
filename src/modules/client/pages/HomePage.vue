@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import RestaurantCardList from '@/modules/restaurant/component/RestaurantCardList.vue'
+import RestaurantCardList from '@/modules/client/restaurant/component/RestaurantCardList.vue'
 
 </script>
 

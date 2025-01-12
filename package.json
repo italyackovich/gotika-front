@@ -13,11 +13,21 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@2gis/mapgl": "^1.55.0",
+    "@tanstack/vue-query": "^5.62.9",
+    "2gis-maps": "^3.7.4",
+    "axios": "^1.7.9",
+    "pinia": "^2.3.0",
+    "v-click-outside": "^3.2.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-axios": "^3.5.2",
+    "vue-final-modal": "^4.5.5",
+    "vue-router": "^4.5.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
+    "@types/axios": "^0.9.36",
     "@types/node": "^22.9.3",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",

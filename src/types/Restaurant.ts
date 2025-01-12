@@ -9,6 +9,7 @@ export interface Restaurant {
   phoneNumber: string,
   openingHours: string,
   imageUrl: string,
+  rating: number,
   menu: Menu,
   userList: User[],
   orderList: Order[]

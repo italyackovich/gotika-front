@@ -4,9 +4,11 @@ export default {
   theme: {
     colors: {
       black: '#272E36',
+      lightBlack: '#17191e',
       white: '#F0E9E6',
       gray: '#9095A1',
-      lightGray: '#E2D8D2'
+      lightGray: '#E2D8D2',
+      red: '#9b2020'
     },
     fontFamily: {
       inter: ['Inter', 'sans-serif'],
