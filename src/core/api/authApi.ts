@@ -1,5 +1,7 @@
 import apiClient from '@/core/api/configApi.ts'
 
+
+
 export const register = async (
   firstName: string,
   lastName: string,
@@ -25,12 +27,8 @@ export const login = async (
   return response.data
 }
 
-export const refreshAccessToken = async (refreshToken: string) => {
+export const refreshAccessToken = async () => {
   const response = await apiClient.post(
-    '/auth/refresh', null, {
-      headers: {
-        Authorization: `Bearer ${refreshToken}`
-      }
-    })
+    '/auth/refresh')
   return response.data
 }
