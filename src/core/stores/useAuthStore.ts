@@ -1,48 +1,51 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { login, refreshAccessToken } from '@/core/api/authApi.ts'
-import { clearTokens, getAccessToken, getRefreshToken, getRole, getUserId, saveTokens } from '@/core/utils/tokenUtil.ts'
+import { clearUser, getIsAuth, getRole, getUserId, saveUser } from '@/core/utils/userUtil.ts'
 import type { User } from '@/types/User.ts'
 
-
 export const useAuthStore = defineStore("auth", () => {
-  const accessToken = ref<string | null>(getAccessToken())
-  const refreshToken = ref<string | null>(getRefreshToken())
   const userId = ref<string | null>(getUserId())
   const role = ref<string | null>(getRole())
   const user = ref<User | null>()
+  const isRefreshing = ref<boolean>()
 
-  const isAuthenticated = ref(!!accessToken.value)
+  const isAuthenticated = ref<boolean>(Boolean(getIsAuth()))
 
   const setRole = (userRole: string) => {
     role.value = userRole
   }
 
   const loginUser = async (email: string, password: string) => {
-    console.log(1)
-    const tokens = await login(email, password)
-    saveTokens(tokens.accessToken, tokens.refreshToken, tokens.user)
-    accessToken.value = tokens.accessToken
-    refreshToken.value = tokens.refreshToken
-    user.value = tokens.user
+    const response = await login(email, password)
+    console.log(response)
+    saveUser(response)
+    user.value = response
     isAuthenticated.value = true
+    localStorage.setItem("isAuth", String(isAuthenticated.value))
   }
 
   const refreshTokenIfNeeded = async () => {
-    if (!refreshToken.value) return
-    const tokens = await refreshAccessToken(refreshToken.value)
-    saveTokens(tokens.accessToken, refreshToken.value, tokens.user)
-    accessToken.value = tokens.accessToken
+
+    isRefreshing.value = true
+    try {
+      const response = await refreshAccessToken()
+      saveUser(response)
+      isRefreshing.value = false
+    } catch (err) {
+      console.log('Token refresh failed', err)
+    }
   }
 
   const logoutUser = () => {
-    clearTokens()
-    accessToken.value = null
-    refreshToken.value = null
+    clearUser()
     user.value = null
     isAuthenticated.value = false
+    localStorage.setItem("isAuth", String(isAuthenticated.value))
+    window.location.href = '/'
   }
 
-  return { userId, role, setRole, accessToken, isAuthenticated, loginUser, refreshTokenIfNeeded, logoutUser }
+
+  return { isRefreshing, user, userId, role, setRole, isAuthenticated, loginUser, refreshTokenIfNeeded, logoutUser }
 })
 
